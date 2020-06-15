@@ -24,10 +24,10 @@
                 {{song.title}}
               </div>
               <div class="song-artist">
-                {{song.title}}
+                {{song.artist}}
               </div>
               <div class="song-genre">
-                {{song.title}}
+                {{song.genre}}
               </div>
 
               <v-btn
@@ -55,7 +55,7 @@
 
 <script>
 import SongsService from '@/services/SongsService'
-import ViewSong from '@/components/ViewSong'
+import ViewSong from '@/components/ViewSong/Index'
 import Panel from '@/components/Panel'
 export default {
   components: {
