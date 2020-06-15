@@ -23,19 +23,23 @@ module.exports = {
   },
   async login (req, res) {
     try {
+      // console.log('aiciii')
       const {email, password} = req.body
-      console.log('email', email, password)
+      // console.log('email', email, password)
       const user = await User.findOne({
         where: {
           email: email
         }
       })
+      // console.log('user', user)
       if (!user) {
         return res.status(403).send({
           error: 'The login information was incorrect'
         })
       }
       const isPasswordValid = await user.comparePassword(password)
+      console.log(isPasswordValid, password, this.password)
+      console.log('aici')
       if (!isPasswordValid) {
         return res.status(403).send({
           error: 'The login information was incorrect'
