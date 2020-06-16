@@ -13,7 +13,7 @@
           v-model="password">
         </v-text-field>
         <br>
-        <div class="error" v-html="error" />
+        <div class="danger-alert" v-html="error" />
         <v-btn
           dark
           class="cyan"
@@ -27,7 +27,6 @@
 
 <script>
 import AuthenticationService from '@/services/AuthenticationService'
-import Panel from '@/components/Panel'
 export default {
   data () {
     return {
@@ -45,13 +44,13 @@ export default {
         })
         this.$store.dispatch('setToken', response.data.token)
         this.$store.dispatch('setUser', response.data.user)
+        this.$router.push({
+          name: 'songs'
+        })
       } catch (error) {
         this.error = error.response.data.error
       }
     }
-  },
-  components: {
-    Panel
   }
 }
 </script>

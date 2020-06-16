@@ -9,7 +9,6 @@
 </template>
 
 <script>
-import Panel from '@/components/Panel'
 import Vue from 'vue'
 import Vuetify from 'vuetify'
 import VueYouTubeEmbed from 'vue-youtube-embed'
@@ -19,10 +18,7 @@ Vue.use(Vuetify)
 export default {
   props: [
     'youtubeId'
-  ],
-  components: {
-    Panel
-  }
+  ]
 }
 </script>
 
