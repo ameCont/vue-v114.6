@@ -56,7 +56,7 @@ module.exports = {
   async delete (req, res) {
     try {
       const {bookmarkId} = req.params
-      const bookmark = await Bookmark.findById(bookmarkId)
+      const bookmark = await Bookmark.findByPk(bookmarkId)
       await bookmark.destroy()
       res.send(bookmark)
     } catch (err) {

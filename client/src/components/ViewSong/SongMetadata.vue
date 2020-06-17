@@ -26,7 +26,7 @@
     </v-btn>
 
     <v-btn
-      v-if="isUserLoggedIn && !isBookmarked"
+      v-if="isUserLoggedIn && !bookmark"
       dark
       class="cyan"
       @click="setAsBookmark">
@@ -34,7 +34,7 @@
     </v-btn>
 
     <v-btn
-      v-if="isUserLoggedIn && isBookmarked"
+      v-if="isUserLoggedIn && bookmark"
       dark
       class="cyan"
       @click="unsetAsBookmark">
