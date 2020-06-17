@@ -94,10 +94,15 @@ export default {
   methods: {
     async setAsBookmark () {
       try {
+        const userId = this.user.id
+        const songId = this.song.id
+        // const songId = this.$store.state.route.params.songId
+        console.log('SetAsBookmark songId: ', songId, 'userId ', userId)
         this.bookmark = (await BookmarksService.post({
-          // songId: this.song.id,
-          songId: this.$store.state.route.params.songId,
-          userId: this.$store.state.user.id
+          songId: this.song.id,
+          // songId: this.$store.state.route.params.songId,
+          userId: this.user.id
+          // userId: this.$store.state.user.id
         })).data
         console.log('bookmarked')
       } catch (err) {
