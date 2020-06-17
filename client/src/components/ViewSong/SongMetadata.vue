@@ -78,8 +78,8 @@ export default {
         userId: this.$store.state.user.id
         // UserId: this.$store.state.route.params.UserId
       })).data
-       console.log('songId : ', songId)
-       console.log('userId : ', userId)
+      // console.log('songId : ', songId)
+      // console.log('userId : ', userId)
       this.isBookmarked = !!this.bookmark
       console.log('bookmark ', this.isBookmarked)
     } catch (err) {
@@ -90,7 +90,7 @@ export default {
     async setAsBookmark () {
       try {
         this.bookmark = (await BookmarksService.post({
-          //songId: this.song.id,
+          // songId: this.song.id,
           songId: this.$store.state.route.params.songId,
           userId: this.$store.state.user.id
         })).data
