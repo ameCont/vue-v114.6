@@ -43,9 +43,9 @@
   </v-flex>
 
   <v-flex xs6>
-      <img class="album-image" :src="song.albumImageUrl" />
-      <br>
-      {{song.album}}
+    <img class="album-image" :src="song.albumImageUrl" />
+    <br>
+    {{song.album}}
   </v-flex>
   </panel>
 </template>
@@ -64,24 +64,29 @@ export default {
   },
   computed: {
     ...mapState([
-      'isUserLoggedIn'
+      'isUserLoggedIn',
+      'user'
     ])
   },
   async mounted () {
+    // console.log('watcher0')
+    // async song () {
     if (!this.isUserLoggedIn) {
       return
     }
     try {
-      this.bookmark = (await BookmarksService.index({
-        // songId: this.song.id,
-        songId: this.$store.state.route.params.songId,
-        userId: this.$store.state.user.id
-        // UserId: this.$store.state.route.params.UserId
+      const userId = this.user.id
+      const songId = this.$store.state.route.params.songId
+      const bookmarks = (await BookmarksService.index({
+        userId: this.user.id,
+        songId: this.$store.state.route.params.songId
+        // UserId: this.user.id
       })).data
-      // console.log('songId : ', songId)
-      // console.log('userId : ', userId)
-      this.isBookmarked = !!this.bookmark
-      console.log('bookmark ', this.isBookmarked)
+      console.log('MOUNTED songId: ', songId, 'userId ', userId)
+      // console.log('watcher')
+      if (bookmarks.length) {
+        this.bookmark = bookmarks[0]
+      }
     } catch (err) {
       console.log(err)
     }
@@ -102,7 +107,7 @@ export default {
     async unsetAsBookmark () {
       try {
         console.log('unbookmarked')
-        // console.log(this.bookmark.id)
+        console.log('unsetAs ', this.bookmark.id)
         await BookmarksService.delete(this.bookmark.id)
         this.bookmark = null
       } catch (err) {

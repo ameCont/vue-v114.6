@@ -6,10 +6,10 @@ module.exports = {
     try {
       // console.log('aicii')
       const {songId, userId} = req.query
-      console.log('songId: '+songId, 'userId '+userId)
+      console.log('INDEX songId: '+songId, 'userId '+userId)
       // const SongId = req.body.params.SongId
       // const UserId = req.body.params.UserId
-      const bookmark = await Bookmark.findOne({
+      const bookmark = await Bookmark.findAll({
         where: {
           SongId: songId,
           UserId: userId
@@ -28,7 +28,7 @@ module.exports = {
     try {
       console.log('aici')
       const {songId, userId} = req.body
-      console.log('songId ' +songId, 'userId '+userId)
+      console.log('POST songId ' +songId, 'userId '+userId)
       const bookmark = await Bookmark.findOne({
         where: {
           SongId: songId,
@@ -56,6 +56,7 @@ module.exports = {
   async delete (req, res) {
     try {
       const {bookmarkId} = req.params
+      console.log('DELETE', bookmarkId)
       const bookmark = await Bookmark.findByPk(bookmarkId)
       await bookmark.destroy()
       res.send(bookmark)
